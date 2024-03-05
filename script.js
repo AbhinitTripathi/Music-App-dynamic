@@ -121,6 +121,22 @@ async function displayAlbums(){
   });
 }
 
+//Attach event listner to play next and previous
+//Playbar functionality
+function play(){
+  if (currentSong.currentTime == 0) {
+    playMusic(document.getElementsByTagName("ol")[0].firstElementChild.getElementsByTagName("h4")[0].innerHTML+'-'+song_artist+'.mp3');
+  } else if (currentSong.paused) {
+    document.getElementById('play').classList.remove('fa-play');
+    document.getElementById('play').classList.add('fa-pause');
+    currentSong.play();
+  } else if (!currentSong.paused) {
+    document.getElementById('play').classList.remove('fa-pause');
+    document.getElementById('play').classList.add('fa-play');
+    currentSong.pause();
+  }
+}
+
 //Add Event Listener To Previous
 function prev(){
   let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
@@ -150,22 +166,6 @@ async function main() {
 
   //Display All albums on the page
   displayAlbums();
-
-  //Attach event listner to play next and previous
-  //Playbar functionality
-  play.addEventListener("click", () => {
-    if (currentSong.currentTime == 0) {
-      playMusic(document.getElementsByTagName("ol")[0].firstElementChild.getElementsByTagName("h4")[0].innerHTML+'-'+song_artist+'.mp3');
-    } else if (currentSong.paused) {
-      document.getElementById('play').classList.remove('fa-play');
-      document.getElementById('play').classList.add('fa-pause');
-      currentSong.play();
-    } else if (!currentSong.paused) {
-      document.getElementById('play').classList.remove('fa-pause');
-      document.getElementById('play').classList.add('fa-play');
-      currentSong.pause();
-    }
-  });
 
   //Listen for song time update event
   currentSong.addEventListener("timeupdate", () => {
