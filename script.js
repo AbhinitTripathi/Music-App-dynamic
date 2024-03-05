@@ -23,7 +23,7 @@ async function getSongs(folder) {
 
   currentFolder = encodeURI(folder);
   //Fetching songs library
-  let a = await fetch(`http://127.0.0.1:3000/${currentFolder}/`);
+  let a = await fetch(`https://abhinittripathi.github.io/Music-App-dynamic/${currentFolder}/`);
   let res = await a.text();
   let div = document.createElement("div");
   div.innerHTML = res;
@@ -85,7 +85,7 @@ const playMusic = (track) => {
 }
 
 async function displayAlbums(){
-  let a = await fetch(`http://127.0.0.1:3000/songs/`);
+  let a = await fetch(`https://abhinittripathi.github.io/Music-App-dynamic/songs/`);
   let res = await a.text();
   let div = document.createElement("div");
   div.innerHTML = res;
@@ -96,7 +96,7 @@ async function displayAlbums(){
       let tFolder = e.href.split("/").slice(-2)[0];
       
       //Get the metadata of the folder
-      let a = await fetch(`http://127.0.0.1:3000/songs/${tFolder}/info.json`);
+      let a = await fetch(`https://abhinittripathi.github.io/Music-App-dynamic/songs/${tFolder}/info.json`);
       let res = await a.json();
       document.querySelector(".card__container").innerHTML = document.querySelector(".card__container").innerHTML +
       `<div class="card" data-folder="${decodeURI(tFolder)}">
